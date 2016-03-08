@@ -1,0 +1,16 @@
+---
+
+- name: installing package for redhat
+  yum: name="{{item}}" state=present
+  with_items: "{{package}}"
+  when: ansible_os_family == 'RedHat'
+
+- name: installing package for suse
+  zypper: name="{{item}}" state=present
+  with_items: "{{package}}"
+  when: ansible_os_family == 'Suse'
+
+- name: installing package for ubuntu
+  apt: pkg: "{{item}}" state=present
+  with_items: "{{package}}"
+  when: ansible_os_family == 'Debian'

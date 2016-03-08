@@ -1,2 +1,14 @@
 ---
 # tasks file for ansible-role-ssh
+
+- name: Include OS-specific variables.
+  include_vars: "{{ ansible_os_family }}.yml"
+
+- name: start to install ssh
+  include: install.yml
+
+- name: start to configure ssh
+  include: config.yml
+
+- name: start to configure ssh service
+  include: service.yml

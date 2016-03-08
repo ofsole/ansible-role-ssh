@@ -1,0 +1,17 @@
+---
+## variables for ubuntu
+package: ['openssh-server', 'openssh-client']
+service_name: ssh
+ssh_config_forward_x11_trusted: yes
+ssh_config_hash_known_hosts: no
+ssh_sendenv: no
+ssh_config_use_roaming: no
+sshd_config_subsystem_sftp: /usr/lib/openssh/sftp-server
+sshd_config_mode: 600
+sshd_config_use_dns: yes
+sshd_config_xauth_location: /usr/bin/xauth
+sshd_use_pam: yes
+sshd_gssapicleanupcredentials: yes
+sshd_acceptenv: true
+sshd_config_serverkeybits: 1024
+sshd_config_hostkey: /etc/ssh/ssh_host_rsa_key

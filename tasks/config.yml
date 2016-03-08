@@ -1,0 +1,47 @@
+---
+
+- name: configure ssh_config file
+  template:
+    src: "{{ ssh_config_template }}"
+    dest: "{{ ssh_config_path }}"
+    owner: "{{ ssh_config_owner }}"
+    group: "{{ ssh_config_group }}"
+    mode: "{{ ssh_config_mode }}"
+
+- name: configure sshd_config file
+  template:
+    src: "{{ sshd_config_template }}"
+    dest: "{{ sshd_config_path }}"
+    owner: "{{ sshd_config_owner }}"
+    group: "{{ sshd_config_group }}"
+    mode: "{{ sshd_config_mode }}"
+
+- name: configure sshd banner
+  lineinfile:
+    create: yes
+    dest: "{{ sshd_config_banner }}"
+    state: present
+    line: "{{ sshd_banner_content }}"
+    owner: "{{ sshd_banner_owner }}"
+    group: "{{ sshd_banner_group }}"
+    mode: "{{ sshd_banner_mode }}"
+  when: sshd_config_banner != "none"
+
+- name: manage root ssh config directory
+  file:
+    dest: "{{ ansible_user_dir }}/.ssh"
+    owner: root
+    group: root
+    mode: 700
+    state: directory
+  when: manage_root_ssh_config
+- name: manage root ssh config file
+  lineinfile:
+    create: yes
+    dest: "{{ ansible_user_dir }}/.ssh/config"
+    line: "{{ root_ssh_config_content }}"  
+    owner: root
+    group: root
+    mode 600
+  when: manage_root_ssh_config
+

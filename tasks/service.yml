@@ -1,0 +1,7 @@
+---
+
+- name: mange sshd service
+  service:
+    state: "{{ service_state }}"
+    name: "{{ service_name }}"
+    enabled: "{{ service_enable }}"
