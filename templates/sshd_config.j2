@@ -1,0 +1,214 @@
+# This file is being maintained by Ansible.
+# DO NOT EDIT
+
+# $OpenBSD: sshd_config,v 1.73 2005/12/06 22:38:28 reyk Exp $
+
+# This is the sshd server system-wide configuration file.  See
+# sshd_config(5) for more information.
+
+# This sshd was compiled with PATH=/usr/local/bin:/bin:/usr/bin
+
+# The strategy used for options in the default sshd_config shipped with
+# OpenSSH is to specify options with their default value where
+# possible, but leave them commented.  Uncommented options change a
+# default value.
+
+#Port 22
+Port {{ sshd_config_port }}
+#Protocol 2,1
+Protocol 2
+#AddressFamily any
+{% if sshd_addressfamily %}
+AddressFamily {{ sshd_addressfamily }}
+{% endif %}
+{% for listen_address in sshd_listen_address %}
+ListenAddress {{ listen_address }}
+{% endfor %}
+
+# HostKey for protocol version 1
+#HostKey /etc/ssh/ssh_host_key
+# HostKeys for protocol version 2
+#HostKey /etc/ssh/ssh_host_rsa_key
+#HostKey /etc/ssh/ssh_host_dsa_key
+{% for hostkey in sshd_config_hostkey %}
+HostKey sshd_config_hostkey
+{% endfor %}
+
+# Lifetime and size of ephemeral version 1 server key
+#KeyRegenerationInterval 1h
+#ServerKeyBits 1024
+
+{% if sshd_config_serverkeybits %}
+ServerKeyBits {{ sshd_config_serverkeybits }}
+{% endif %}
+# Logging
+# obsoletes QuietMode and FascistLogging
+#SyslogFacility AUTH
+SyslogFacility {{ sshd_config_syslog_facility }}
+#LogLevel INFO
+LogLevel {{ sshd_config_loglevel }}
+
+# Authentication:
+
+#LoginGraceTime 120
+LoginGraceTime {{ sshd_config_login_grace_time }}
+#PermitRootLogin yes
+PermitRootLogin {{ permit_root_login }}
+#StrictModes yes
+{% if sshd_config_strictmodes %}
+StrictModes {{ sshd_config_strictmodes }}
+{% endif %}
+#MaxAuthTries 6
+
+#RSAAuthentication yes
+#PubkeyAuthentication yes
+#AuthorizedKeysFile .ssh/authorized_keys
+{% if sshd_config_authkey_location %}
+AuthorizedKeysFile {{ sshd_config_authkey_location }}
+{% endif %}
+{% if sshd_authorized_keys_command %}
+AuthorizedKeysCommand {{ sshd_authorized_keys_command }}
+{% endif %}
+{% if sshd_authorized_keys_command_user %}
+AuthorizedKeysCommandUser {{ sshd_authorized_keys_command_user }}
+{% endif %}
+
+# For this to work you will also need host keys in /etc/ssh/ssh_known_hosts
+#RhostsRSAAuthentication no
+# similar for protocol version 2
+#HostbasedAuthentication no
+HostbasedAuthentication {{ sshd_hostbasedauthentication }}
+# Change to yes if you don't trust ~/.ssh/known_hosts for
+# RhostsRSAAuthentication and HostbasedAuthentication
+#IgnoreUserKnownHosts no
+IgnoreUserKnownHosts {{ sshd_ignoreuserknownhosts }}
+# Don't read the user's ~/.rhosts and ~/.shosts files
+#IgnoreRhosts yes
+IgnoreRhosts {{ sshd_ignorerhosts }}
+
+# To disable tunneled clear text passwords, change to no here!
+#PasswordAuthentication yes
+PasswordAuthentication {{ sshd_password_authentication }}
+#PermitEmptyPasswords no
+
+# Change to no to disable s/key passwords
+#ChallengeResponseAuthentication yes
+ChallengeResponseAuthentication {{ sshd_config_challenge_resp_auth }}
+
+# Kerberos options
+{% if sshd_kerberos_authentication %}
+#KerberosAuthentication no
+KerberosAuthentication {{ sshd_kerberos_authentication }}
+{% endif %}
+#KerberosOrLocalPasswd yes
+#KerberosTicketCleanup yes
+#KerberosGetAFSToken no
+
+# GSSAPI options
+#GSSAPIAuthentication no
+GSSAPIAuthentication {{ sshd_gssapiauthentication }}
+{% if sshd_gssapicleanupcredentials %}
+#GSSAPICleanupCredentials yes
+GSSAPICleanupCredentials {{ sshd_gssapicleanupcredentials }}
+
+{% if sshd_use_pam %}
+# Set this to 'yes' to enable PAM authentication, account processing,
+# and session processing. If this is enabled, PAM authentication will
+# be allowed through the ChallengeResponseAuthentication mechanism.
+# Depending on your PAM configuration, this may bypass the setting of
+# PasswordAuthentication, PermitEmptyPasswords, and
+# "PermitRootLogin without-password". If you just want the PAM account and
+# session checks to run without PAM authentication, then enable this but set
+# ChallengeResponseAuthentication=no
+#UsePAM no
+UsePAM {{ sshd_use_pam }}
+{% endif %}
+
+{% if sshd_acceptenv %}
+# Accept locale-related environment variables
+AcceptEnv LANG LC_CTYPE LC_NUMERIC LC_TIME LC_COLLATE LC_MONETARY LC_MESSAGES
+AcceptEnv LC_PAPER LC_NAME LC_ADDRESS LC_TELEPHONE LC_MEASUREMENT
+AcceptEnv LC_IDENTIFICATION LC_ALL
+{% endif %}
+#AllowTcpForwarding yes
+AllowTcpForwarding {{ sshd_allow_tcp_forwarding }}
+#GatewayPorts no
+#X11Forwarding no
+X11Forwarding {{ sshd_x11_forwarding }}
+#X11DisplayOffset 10
+#X11UseLocalhost yes
+#PrintMotd yes
+PrintMotd {{ sshd_config_print_motd }}
+#PrintLastLog yes
+#TCPKeepAlive yes
+#UseLogin no
+#UsePrivilegeSeparation yes
+#PermitUserEnvironment no
+#Compression delayed
+#ClientAliveInterval 0
+ClientAliveInterval {{ sshd_client_alive_interval }}
+ClientAliveCountMax {{ sshd_client_alive_count_max }}
+#ShowPatchLevel no
+{% if sshd_config_use_dns %}
+#UseDNS yes
+UseDNS {{ sshd_config_use_dns }}
+{% endif %}
+#PidFile /var/run/sshd.pid
+{% if sshd_config_maxstartups %}
+MaxStartups {{ sshd_config_maxstartups }}
+{% else %}
+#MaxStartups 10:30:100
+{% endif %}
+{% if sshd_config_maxsessions %}
+MaxSessions {{ sshd_config_maxsessions }}
+{% else %}
+#MaxSessions 10
+{% endif %}
+
+#PermitTunnel no
+{% if sshd_config_chrootdirectory %}
+ChrootDirectory {{ sshd_config_chrootdirectory }}
+{% else %}
+#ChrootDirectory none
+{% endif %}
+{% if sshd_config_forcecommand %}
+ForceCommand {{ sshd_config_forcecommand }}
+{% endif %}
+
+# no default banner path
+#Banner none
+Banner {{ sshd_config_banner }}
+
+#XAuthLocation /usr/bin/xauth
+XAuthLocation {{ sshd_config_xauth_location }}
+
+# override default of no subsystems
+Subsystem sftp {{ sshd_config_subsystem_sftp }}
+
+{% if sshd_config_ciphers %}
+Ciphers {{ sshd_config_ciphers | join(",") }}
+{% endif %}
+{% if sshd_config_macs %}
+MACs {{ sshd_config_macs | join(",") }}
+{% endif %}
+{% if sshd_config_denyusers %}
+DenyUsers {{ sshd_config_denyusers | join(" ") }}
+{% endif %}
+{% if sshd_config_denygroups %}
+DenyGroups {{ sshd_config_denygroups | join(" ") }}
+{% endif %}
+{% if sshd_config_allowusers %}
+AllowUsers {{ sshd_config_allowusers | join(" ") }}
+{% endif %}
+{% if sshd_config_allowgroups %}
+AllowGroups {{ sshd_config_allowgroups | join(" ") }}
+{% endif %}
+{% if sshd_config_match %}
+
+{%   for key in sshd_config_match %}
+ Match {{ key }}
+{%     for values in sshd_config_match[key] %}
+  {{ values }}
+{%     endfor %}
+{%   endfor %}
+{% endif %}

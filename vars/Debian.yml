@@ -14,4 +14,4 @@ sshd_use_pam: yes
 sshd_gssapicleanupcredentials: yes
 sshd_acceptenv: true
 sshd_config_serverkeybits: 1024
-sshd_config_hostkey: /etc/ssh/ssh_host_rsa_key
+sshd_config_hostkey: ['/etc/ssh/ssh_host_rsa_key']

@@ -15,8 +15,14 @@ ssh_config_global_known_hosts_file: /etc/ssh/ssh_known_hosts
 ssh_config_global_known_hosts_owner: root
 ssh_config_global_known_hosts_group: root
 ssh_config_global_known_hosts_mode: 644
+ssh_config_ciphers: []
+ssh_config_forward_agent: ""
+ssh_config_forward_x11: ""
+ssh_config_server_alive_interval: ""
+ssh_config_macs: []
 manage_root_ssh_config: false
 root_ssh_config_content: "# This file is being maintained by Puppet.\n# DO NOT EDIT\n"
+ssh_gssapidelegatecredentials: ""
 # defaults file for ssh server(sshd)
 sshd_config_path: /etc/ssh/sshd_config
 sshd_config_owner: root
@@ -33,6 +39,8 @@ sshd_config_allowgroups: []
 sshd_config_allowusers: []
 sshd_config_denygroups: []
 sshd_config_denyusers: []
+sshd_config_strictmodes: ""
+sshd_config_authkey_location: ""
 sshd_banner_owner: root
 sshd_banner_group: root
 sshd_banner_mode: 644
@@ -45,8 +53,19 @@ sshd_gssapiauthentication: yes
 sshd_hostbasedauthentication: no
 sshd_ignoreuserknownhosts: no
 sshd_ignorerhosts: yes
+sshd_listen_address: []
 manage_service: true
 sshd_addressfamily: any
+sshd_authorized_keys_command: ""
+sshd_authorized_keys_command_user: ""
+sshd_config_maxstartups: ""
+sshd_config_maxsessions: ""
+sshd_config_chrootdirectory: ""
+sshd_config_forcecommand: ""
+sshd_config_ciphers: []
+sshd_config_macs: []
+sshd_config_match: {}
+sshd_kerberos_authentication: ""
 service_state: started
 service_enable: yes
 service_hasrestart: true
