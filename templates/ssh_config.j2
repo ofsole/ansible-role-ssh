@@ -72,7 +72,7 @@ Host *
 {% if ssh_config_forward_x11 %}
   ForwardX11 {{ ssh_config_forward_x11 }}
 {% endif %}
-{% if ssh_config_use_roaming == 'no or 'yes''%}
+{% if ssh_config_use_roaming == 'no' or 'yes' %}
   UseRoaming {{ ssh_config_use_roaming }}
 {% endif %}
 {% if ssh_config_server_alive_interval %}
@@ -87,6 +87,6 @@ Host *
   SendEnv XMODIFIERS
 {%   endif %}
 {% endif %}
-{{% if ssh_config_macs %}
+{% if ssh_config_macs %}
   MACs {{ ssh_config_macs | join(",") }}
 {% endif %}

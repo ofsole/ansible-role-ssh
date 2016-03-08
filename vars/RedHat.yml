@@ -1,6 +1,8 @@
 ---
 ## variables for redhat
-package: ['openssh-server', 'openssh-clients']
+package:
+  - openssh-server
+  - openssh-clients
 service_name: sshd
 ssh_config_hash_known_hosts: no
 ssh_config_forward_x11_trusted: yes

@@ -42,6 +42,6 @@
     line: "{{ root_ssh_config_content }}"  
     owner: root
     group: root
-    mode 600
+    mode: 600
   when: manage_root_ssh_config
 
