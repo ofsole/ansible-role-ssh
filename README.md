@@ -108,6 +108,15 @@ Including an example of how to use your role (for instance, with variables passe
           - openssh-client
         service_name: sshd
         sshd_config_subsystem_sftp: '/usr/libexec/openssh/sftp-server'
+        keys:
+          ecnshts.abc:
+            user: root
+            state: present
+            key: "ssh-dss AAAasdasd8t3WAQROQdVlv6RSNypvxaTMus3AhB73lmShtz+Cmxr4KeHbLzH6JFkkmwvZRXxZjJvZMBh1x48oUKhiiTC9KD2p7YTAO0WV64SkJzslSODC23KZ8mR7OFgkRuM2BbLpBD92ik4FaaucOKAhtQI96ReC0Di1tirrW2mmsqMm5AAAAFQDFCv2/4E/GBoflE4HKfRh94YnknQAAAIA3MJGay888YWpqR/N1TxQCfSfQDvWOd3F3URVqAA7RBj3CNglmhH1gVZoIOm3hUxz/0M84/dL+u2P08i7tRo8AgrYdJKen6quichTYNiEzWSOLON0LVYYKu42TmlKkHIqjOtrWjy51o5pUc2p6Ng1GCOzn8zvG6SHMA+4I5pJc9wAAAIA+eorvZdhuPQu/ru0QIrSm+K1wedaqWhr59IZpHG/DGXGIJJH/DDf13zZkEgOfXNk3kpvR6TVeKPoU2bX4arUJyC+7lSt14A7GzFQDFN+9sYwEBEmulZaGv4h/E96/C+D7Vaau4fQuKQkt/DcxnaI63/Y6Jub4TjpPmnipmjQVzw== ecnshts.abc"
+          ecnshst.cba:
+            user: ofsole
+            state: present
+            key: "ssh-dss AAAasdasd8t3WAQROQdVlv6RSNypvxaTMus3AhB73lmShtz+Cmxr4KeHbLzH6JFkkmwvZRXxZjJvZMBh1x48oUKhiiTC9KD2p7YTAO0WV64SkJzslSODC23KZ8mR7OFgkRuM2BbLpBD92ik4FaaucOKAhtQI96ReC0Di1tirrW2mmsqMm5AAAAFQDFCv2/4E/GBoflE4HKfRh94YnknQAAAIA3MJGay888YWpqR/N1TxQCfSfQDvWOd3F3URVqAA7RBj3CNglmhH1gVZoIOm3hUxz/0M84/dL+u2P08i7tRo8AgrYdJKen6quichTYNiEzWSOLON0LVYYKu42TmlKkHIqjOtrWjy51o5pUc2p6Ng1GCOzn8zvG6SHMA+4I5pJc9wAAAIA+eorvZdhuPQu/ru0QIrSm+K1wedaqWhr59IZpHG/DGXGIJJH/DDf13zZkEgOfXNk3kpvR6TVeKPoU2bX4arUJyC+7lSt14A7GzFQDFN+9sYwEBEmulZaGv4h/E96/C+D7Vaau4fQuKQkt/DcxnaI63/Y6Jub4TjpPmnipmjQVzw== ecnshts.abc"
 
 License
 -------
