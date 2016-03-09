@@ -204,7 +204,7 @@ AllowUsers {{ sshd_config_allowusers | join(" ") }}
 {% if sshd_config_allowgroups %}
 AllowGroups {{ sshd_config_allowgroups | join(" ") }}
 {% endif %}
-{% if sshd_config_match %}
+{% if sshd_config_match is iterable %}
 
 {%   for key, values in sshd_config_match.iteritems() %}
  Match {{ key }}

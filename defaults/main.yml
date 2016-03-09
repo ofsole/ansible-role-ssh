@@ -69,3 +69,4 @@ sshd_kerberos_authentication: ""
 service_state: started
 service_enable: 'yes'
 service_hasrestart: true
+keys: {}

@@ -45,3 +45,10 @@
     mode: 600
   when: manage_root_ssh_config
 
+- name: manage authorized key
+  authorized_key:
+    user: "{{ item.value.user }}"
+    key: "{{ item.value.key }}"
+    state: "{{ item.value.state }}"
+  with_dict: "{{keys}}"
+  when: keys
