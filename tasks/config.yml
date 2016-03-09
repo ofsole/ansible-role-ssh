@@ -39,7 +39,7 @@
   lineinfile:
     create: yes
     dest: "{{ ansible_user_dir }}/.ssh/config"
-    line: "{{ root_ssh_config_content }}"  
+    line: "{{ root_ssh_config_content }}"
     owner: root
     group: root
     mode: 600

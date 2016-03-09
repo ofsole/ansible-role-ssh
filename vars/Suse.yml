@@ -3,15 +3,15 @@
 package:
   - openssh
 service_name: sshd
-ssh_config_hash_known_hosts: no
+ssh_config_hash_known_hosts: 'no'
 ssh_sendenv: true
-ssh_config_use_roaming: no
-ssh_config_forward_x11_trusted: yes
+ssh_config_use_roaming: 'no'
+ssh_config_forward_x11_trusted: 'yes'
 sshd_config_mode: 644
-sshd_config_use_dns: yes
+sshd_config_use_dns: 'yes'
 sshd_config_xauth_location: /usr/bin/xauth
-sshd_use_pam: yes
-sshd_gssapicleanupcredentials: yes
+sshd_use_pam: 'yes'
+sshd_gssapicleanupcredentials: 'yes'
 sshd_acceptenv: true
 sshd_config_serverkeybits: 1024
 sshd_config_hostkey:

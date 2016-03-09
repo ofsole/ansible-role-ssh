@@ -31,7 +31,7 @@ ListenAddress {{ listen_address }}
 #HostKey /etc/ssh/ssh_host_rsa_key
 #HostKey /etc/ssh/ssh_host_dsa_key
 {% for hostkey in sshd_config_hostkey %}
-HostKey sshd_config_hostkey
+HostKey {{ sshd_config_hostkey }}
 {% endfor %}
 
 # Lifetime and size of ephemeral version 1 server key
@@ -110,6 +110,7 @@ GSSAPIAuthentication {{ sshd_gssapiauthentication }}
 {% if sshd_gssapicleanupcredentials %}
 #GSSAPICleanupCredentials yes
 GSSAPICleanupCredentials {{ sshd_gssapicleanupcredentials }}
+{% endif %}
 
 {% if sshd_use_pam %}
 # Set this to 'yes' to enable PAM authentication, account processing,
@@ -205,10 +206,10 @@ AllowGroups {{ sshd_config_allowgroups | join(" ") }}
 {% endif %}
 {% if sshd_config_match %}
 
-{%   for key in sshd_config_match %}
+{%   for key, values in sshd_config_match.iteritems() %}
  Match {{ key }}
-{%     for values in sshd_config_match[key] %}
-  {{ values }}
+{%     for value in values %}
+  {{ value }}
 {%     endfor %}
 {%   endfor %}
 {% endif %}

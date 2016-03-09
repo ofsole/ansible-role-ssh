@@ -1,13 +1,13 @@
 ---
 # defaults file for ssh client
-permit_root_login: yes
+permit_root_login: 'yes'
 ssh_config_path: /etc/ssh/ssh_config
 ssh_config_owner: root
 ssh_config_group: root
 ssh_config_mode: 644
 ssh_config_sendenv_xmodifiers: false
 ssh_config_template: ssh_config.j2
-ssh_gssapiauthentication: yes
+ssh_gssapiauthentication: 'yes'
 ssh_key_ensure: present
 ssh_key_import: true
 ssh_key_type: ssh-rsa
@@ -32,8 +32,8 @@ sshd_config_port: 22
 sshd_config_syslog_facility: AUTH
 sshd_config_template: sshd_config.j2
 sshd_config_login_grace_time: 120
-sshd_config_challenge_resp_auth: yes
-sshd_config_print_motd: yes
+sshd_config_challenge_resp_auth: 'yes'
+sshd_config_print_motd: 'yes'
 sshd_config_banner: none
 sshd_config_allowgroups: []
 sshd_config_allowusers: []
@@ -44,15 +44,15 @@ sshd_config_authkey_location: ""
 sshd_banner_owner: root
 sshd_banner_group: root
 sshd_banner_mode: 644
-sshd_password_authentication: yes
-sshd_allow_tcp_forwarding: yes
-sshd_x11_forwarding: yes
+sshd_password_authentication: 'yes'
+sshd_allow_tcp_forwarding: 'yes'
+sshd_x11_forwarding: 'yes'
 sshd_client_alive_count_max: 3
 sshd_client_alive_interval: 0
-sshd_gssapiauthentication: yes
-sshd_hostbasedauthentication: no
-sshd_ignoreuserknownhosts: no
-sshd_ignorerhosts: yes
+sshd_gssapiauthentication: 'yes'
+sshd_hostbasedauthentication: 'no'
+sshd_ignoreuserknownhosts: 'no'
+sshd_ignorerhosts: 'yes'
 sshd_listen_address: []
 manage_service: true
 sshd_addressfamily: any
@@ -67,5 +67,5 @@ sshd_config_macs: []
 sshd_config_match: {}
 sshd_kerberos_authentication: ""
 service_state: started
-service_enable: yes
+service_enable: 'yes'
 service_hasrestart: true
