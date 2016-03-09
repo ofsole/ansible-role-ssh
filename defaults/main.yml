@@ -21,7 +21,7 @@ ssh_config_forward_x11: ""
 ssh_config_server_alive_interval: ""
 ssh_config_macs: []
 manage_root_ssh_config: false
-root_ssh_config_content: "# This file is being maintained by Puppet.\n# DO NOT EDIT\n"
+root_ssh_config_content: "# This file is being maintained by Ansible.\n# DO NOT EDIT\n"
 ssh_gssapidelegatecredentials: ""
 # defaults file for ssh server(sshd)
 sshd_config_path: /etc/ssh/sshd_config
